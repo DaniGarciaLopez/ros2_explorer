@@ -7,7 +7,7 @@
     </include>
 
     <scene>
-      <shadows>false</shadows>
+      <shadows>true</shadows>
     </scene>
 
     <gui fullscreen='0'>
@@ -39,10 +39,10 @@
       </ode>
     </physics>
 
-    <model name="map1_world">
+    <model name="map_world">
       <static>1</static>
       <include>
-        <uri>model://map1</uri>
+        <uri>model://map9</uri>
       </include>
     </model>
      
