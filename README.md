@@ -49,7 +49,12 @@ Maps will be converted to Gazebo format in `models` folder. Modify the name of t
 </include>
 ```
 ## How to run
+Launch basic simulation in gazebo loading map and robot in the initial position:
 ```
 ros2 launch explorer_bringup demo.launch.py
+```
+Move the robot manually:
+```
+ros2 run turtlebot3_teleop teleop_keyboard
 ```
 
