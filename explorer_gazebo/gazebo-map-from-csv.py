@@ -50,17 +50,6 @@ for filename in filenames: #Iterate through all csv filenames
     Ey = meterPerPixel
 
     sdf = etree.Element("sdf", version="1.5")
-    # world = etree.SubElement(sdf, "world", name="default")
-    # light = etree.SubElement(world, "light", name="sun", type="directional")
-    # cast_shadows = etree.SubElement(light, "cast_shadows").text="1"
-    # diffuse = etree.SubElement(light, "diffuse").text="0.8 0.8 0.8 1"
-    # specular = etree.SubElement(light, "specular").text="0.1 0.1 0.1 1"
-    # attenuation = etree.SubElement(light, "attenuation")
-    # _range = etree.SubElement(attenuation, "range").text="1000"
-    # constant = etree.SubElement(attenuation, "constant").text="0.9"
-    # linear = etree.SubElement(attenuation, "linear").text="0.01"
-    # quadratic = etree.SubElement(attenuation, "quadratic").text="0.001"
-    # direction = etree.SubElement(light, "direction").text="-0.5 0.5 -1"
 
     #-- Create Floor
     floorEx = Ex * nX
@@ -80,6 +69,10 @@ for filename in filenames: #Iterate through all csv filenames
     geometry = etree.SubElement(visual, "geometry")
     box = etree.SubElement(geometry, "box")
     size = etree.SubElement(box, "size").text=str(floorEx)+" "+ str(floorEy)+" "+str(floorEz)
+    # material = etree.SubElement(visual, "material")
+    # script = etree.SubElement(material, "script")
+    # uri = etree.SubElement(script, "uri").text='file://media/materials/scripts/gazebo.material'
+    # script_name = etree.SubElement(script, "uri").text='Gazebo/White'
 
     #-- Create Walls
     for iX in range(nX):
@@ -98,9 +91,6 @@ for filename in filenames: #Iterate through all csv filenames
 
             #-- Create box
             name="box_"+str(iX)+"_"+str(iY)
-            #model = etree.SubElement(world, "model", name="box_"+str(iX)+"_"+str(iY))
-            #static = etree.SubElement(model, "static").text="true"
-            #link = etree.SubElement(model, "link", name="box_"+str(iX)+"_"+str(iY))
             collision = etree.SubElement(link, "collision", name=name)
             pose = etree.SubElement(collision, "pose").text=str(x)+" "+str(y)+" "+str(z)+" 0 0 0"
             geometry = etree.SubElement(collision, "geometry")
@@ -112,6 +102,10 @@ for filename in filenames: #Iterate through all csv filenames
             geometry = etree.SubElement(visual, "geometry")
             box = etree.SubElement(geometry, "box")
             size = etree.SubElement(box, "size").text=str(Ex)+" "+ str(Ey)+" "+str(Ez)
+            # material = etree.SubElement(visual, "material")
+            # script = etree.SubElement(material, "script")
+            # uri = etree.SubElement(script, "uri").text='file://media/materials/scripts/gazebo.material'
+            # script_name = etree.SubElement(script, "uri").text='Gazebo/Grey'
 
     myStr = etree.tostring(sdf, pretty_print=True, encoding="unicode")
 
@@ -121,7 +115,7 @@ for filename in filenames: #Iterate through all csv filenames
         os.makedirs(path)
     path=os.path.join('models', filename)
 
-    #Write .sdf file
+    #Write map.sdf file
     outFile = open(os.path.join(path, filename+'.sdf'), 'w')
     outFile.write(myStr)
     outFile.close()
@@ -131,11 +125,6 @@ for filename in filenames: #Iterate through all csv filenames
     name = etree.SubElement(model, "name").text='CSV Map'
     version = etree.SubElement(model, "version").text='1.0'
     sdf = etree.SubElement(model, "sdf", version='1.5').text=filename+'.sdf'
-
-    # author = etree.SubElement(model, "author")
-    # name = etree.SubElement(author, "name").text=''
-    # name = etree.SubElement(author, "email").text=''
-
     description = etree.SubElement(model, "description").text='Map generated automatically from a csv file. More info: https://github.com/DaniGarciaLopez/ros2_explorer'
 
     #Write model.config file
