@@ -1,4 +1,4 @@
-# ros2_explorer
+# ROS2 Turtlebot3 Map Explorer
 ## Installation
 
 [Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
