@@ -7,7 +7,7 @@
     </include>
 
     <scene>
-      <shadows>true</shadows>
+      <shadows>false</shadows>
     </scene>
 
     <gui fullscreen='0'>
@@ -42,7 +42,7 @@
     <model name="map_world">
       <static>1</static>
       <include>
-        <uri>model://map9</uri>
+        <uri>model://map1</uri>
       </include>
     </model>
      
