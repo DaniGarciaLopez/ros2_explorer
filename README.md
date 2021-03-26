@@ -14,8 +14,8 @@ git clone https://github.com/DaniGarciaLopez/ros2_explorer.git
 ```
 Clone turtlebot original repository to have additional utilities (not necessary):
 ```
-git clone foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3.git
-git clone foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3.git
+git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
 ```
 Compile packages:
 ```
