@@ -55,7 +55,7 @@ ros2 launch explorer_bringup demo.launch.py
 ```
 Cartographer launch:
 ```
-ros2 launch explorer_cartographer cartographer.launch.py
+ros2 launch explorer_cartographer cartographer.launch.py use_sim_time:=True
 ```
 Move the robot manually:
 ```
