@@ -57,6 +57,11 @@ Cartographer launch:
 ```
 ros2 launch explorer_cartographer cartographer.launch.py use_sim_time:=True
 ```
+Navigation launch:
+```
+ros2 launch explorer_navigation2 navigation2.launch.py use_sim_time:=True
+
+```
 Move the robot manually:
 ```
 ros2 run turtlebot3_teleop teleop_keyboard
