@@ -3,7 +3,7 @@
 
 [Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
 
-[Install Turtlebot3 on ROS2 Foxy](https://ben.bongalon.com/robot/install-turtlebot3-on-ros-2-foxy/)
+[Install Turtlebot3 on ROS2 Foxy](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/)
 
 Create a ROS2 workspace:
 ```
