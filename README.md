@@ -4,7 +4,15 @@
 [Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
 
 [Install Turtlebot3 on ROS2 Foxy](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/)
-
+Install Gazebo:
+```
+curl -sSL http://get.gazebosim.org | sh
+```
+Install packages:
+```
+sudo apt install ros-foxy-gazebo-ros-pkgs ros-foxy-cartographer ros-foxy-cartographer-ros ros-foxy-navigation2 ros-foxy-nav2-bringup
+sudo apt install ros-foxy-turtlebot3-msgs ros-foxy-dynamixel-sdk ros-foxy-hls-lfcd-lds-driver
+```
 Create a ROS2 workspace:
 ```
 mkdir -p ~/turtlebot3_ws/src
