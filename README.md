@@ -27,7 +27,7 @@ Clone the repository:
 ```
 git clone https://github.com/DaniGarciaLopez/ros2_explorer.git
 ```
-Clone turtlebot original repository to have additional utilities (not necessary):
+Clone turtlebot original repository to have additional utilities:
 ```
 git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3.git
 git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
@@ -74,7 +74,7 @@ ros2 launch explorer_cartographer cartographer.launch.py use_sim_time:=True
 ```
 Navigation launch:
 ```
-ros2 launch explorer_navigation2 navigation2.launch.py use_sim_time:=True
+ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True
 
 ```
 Move the robot manually:
