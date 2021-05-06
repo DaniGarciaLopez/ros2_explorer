@@ -4,6 +4,11 @@
 [Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
 
 [Install Turtlebot3 on ROS2 Foxy](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/)
+
+Don't forget to install colcon:
+```
+sudo apt install python3-colcon-common-extensions
+```
 Install Gazebo:
 ```
 curl -sSL http://get.gazebosim.org | sh
