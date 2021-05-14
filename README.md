@@ -85,4 +85,6 @@ Save a map:
 ```
 ros2 run nav2_map_server map_saver_cli
 ```
+## Package structure
+![image](https://github.com/DaniGarciaLopez/ros2_explorer/blob/main/explorer_bringup/data/explorer_graph.png)
 
