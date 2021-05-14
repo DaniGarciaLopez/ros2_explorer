@@ -72,6 +72,10 @@ Cartographer launch:
 ```
 ros2 launch explorer_cartographer cartographer.launch.py use_sim_time:=True
 ```
+Explore the map:
+```
+ros2 run explorer_wanderer wanderer
+```
 Navigation launch:
 ```
 ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True
