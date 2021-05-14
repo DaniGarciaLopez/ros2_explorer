@@ -3,6 +3,21 @@
 
 [Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
 
+[Install Turtlebot3 on ROS2 Foxy](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/)
+
+Don't forget to install colcon:
+```
+sudo apt install python3-colcon-common-extensions
+```
+Install Gazebo:
+```
+curl -sSL http://get.gazebosim.org | sh
+```
+Install packages:
+```
+sudo apt install ros-foxy-gazebo-ros-pkgs ros-foxy-cartographer ros-foxy-cartographer-ros ros-foxy-navigation2 ros-foxy-nav2-bringup
+sudo apt install ros-foxy-turtlebot3-msgs ros-foxy-dynamixel-sdk ros-foxy-hls-lfcd-lds-driver
+```
 Create a ROS2 workspace:
 ```
 mkdir -p ~/turtlebot3_ws/src
@@ -12,7 +27,7 @@ Clone the repository:
 ```
 git clone https://github.com/DaniGarciaLopez/ros2_explorer.git
 ```
-Clone turtlebot original repository to have additional utilities (not necessary):
+Clone turtlebot original repository to have additional utilities:
 ```
 git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3.git
 git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
@@ -59,11 +74,17 @@ ros2 launch explorer_cartographer cartographer.launch.py use_sim_time:=True
 ```
 Navigation launch:
 ```
-ros2 launch explorer_navigation2 navigation2.launch.py use_sim_time:=True
+ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True
 
 ```
 Move the robot manually:
 ```
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
+Save a map:
+```
+ros2 run nav2_map_server map_saver_cli
+```
+## Package structure
+![image](https://github.com/DaniGarciaLopez/ros2_explorer/blob/main/explorer_bringup/data/explorer_graph.png)
 

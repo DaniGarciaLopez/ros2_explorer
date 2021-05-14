@@ -1,0 +1,24 @@
+
+#Strategy to use to explore the map:
+#   0=Random control
+#   1=Wall hugging
+#   ...
+uint8 strategy
+
+#Threshold to consider the map completed
+float32 threshold
+---
+#Final pose of the robot when exploration finishes
+geometry_msgs/Pose final_pose 
+
+#Path done while exploring
+nav_msgs/Path explored_path
+
+#Distance travelled while exploring
+float32 distance
+
+#Time spent while exploring
+builtin_interfaces/Duration duration
+---
+#Percentage of the map explored
+float32 progress
