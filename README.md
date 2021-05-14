@@ -78,7 +78,7 @@ ros2 run explorer_wanderer wanderer
 ```
 Navigation launch:
 ```
-ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True
+ros2 launch explorer_navigation2 nav.launch.py use_sim_time:=True
 
 ```
 Move the robot manually:
