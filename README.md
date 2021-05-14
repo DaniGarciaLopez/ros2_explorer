@@ -78,7 +78,7 @@ ros2 run explorer_wanderer wanderer
 ```
 Navigation launch:
 ```
-ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True
+ros2 launch explorer_navigation2 nav.launch.py use_sim_time:=True
 
 ```
 Move the robot manually:
@@ -91,7 +91,7 @@ ros2 run nav2_map_server map_saver_cli
 ```
 Publish a goal:
 ```
-ros2 topic pub /goal_pose geometry_msgs/PoseStamped "{header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x:0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}"
+ros2 topic pub /goal_pose geometry_msgs/PoseStamped "{header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x: 2.5, y: 2.5, z: 0.0}, orientation: {w: 1.0}}}"
 ```
 ## Package structure
 ![image](https://github.com/DaniGarciaLopez/ros2_explorer/blob/main/explorer_bringup/data/explorer_graph.png)
