@@ -42,7 +42,7 @@
     <model name="map_world">
       <static>1</static>
       <include>
-        <uri>model://map1</uri>
+        <uri>model://map11</uri>
       </include>
     </model>
      
