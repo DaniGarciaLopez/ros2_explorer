@@ -32,7 +32,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-#Include models and wordls folder in install directory
+#Include models, maps and worlds folder in install directory
 install(DIRECTORY models worlds maps
   DESTINATION share/${PROJECT_NAME}/
 )
