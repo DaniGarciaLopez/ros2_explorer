@@ -85,6 +85,11 @@ Move the robot manually:
 ```
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
+
+or, run the wanderer script:
+```
+ros2 run explorer_wanderer wanderer
+```
 Save a map:
 ```
 ros2 run nav2_map_server map_saver_cli
