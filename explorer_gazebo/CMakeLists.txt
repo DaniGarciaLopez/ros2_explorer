@@ -33,7 +33,7 @@ if(BUILD_TESTING)
 endif()
 
 #Include models and wordls folder in install directory
-install(DIRECTORY models worlds
+install(DIRECTORY models worlds maps
   DESTINATION share/${PROJECT_NAME}/
 )
 
