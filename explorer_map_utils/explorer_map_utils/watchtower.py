@@ -28,16 +28,16 @@ class Subscriber(Node):
         self.free_thresh = 0.65
         # Declare map_name parameter
         self.declare_parameter('map_name')
+        map_param = self.get_parameter('map_name') 
+        self.get_logger().info('Map chosen = %s' % (str(map_param.value),))
         # Read map file
         package_share_directory = get_package_share_directory('explorer_gazebo')
         map_folder_directory = os.path.join(package_share_directory, 'maps')
-        map_file = os.path.join(map_folder_directory, 'map2.csv')
+        map_file = os.path.join(map_folder_directory, map_param.value + '.csv')
         df=pd.read_csv(map_file, sep=',',header=None)
         sim_map_array = df.values
-        self.free_space = numpy.count_nonzero(sim_map_array == 0)
-        # Map parameter
-        map_param = self.get_parameter('map_name') 
-        self.get_logger().info('Map chosen = %s' % (str(map_param.value),))
+        print(sim_map_array)
+        self.free_space = numpy.count_nonzero(sim_map_array == 0)        
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
