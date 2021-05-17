@@ -5,7 +5,6 @@ import rclpy
 from rclpy.action import ActionClient
 from rclpy.node import Node
 
-
 class MinimalActionClient(Node):
 
     def __init__(self):
@@ -30,12 +29,10 @@ class MinimalActionClient(Node):
         result = future.result().result
         status = future.result().status
         if status == GoalStatus.STATUS_SUCCEEDED:
-            self.get_logger().info('Goal succeeded! Result: {0}'.format(result.sequence))
+            self.get_logger().info('Goal succeeded!')
         else:
             self.get_logger().info('Goal failed with status: {0}'.format(status))
-
-        # Shutdown after receiving a result
-        rclpy.shutdown()
+            
 
     def send_goal(self):
         self.get_logger().info('Waiting for action server...')
@@ -53,14 +50,14 @@ class MinimalActionClient(Node):
 
         self._send_goal_future.add_done_callback(self.goal_response_callback)
 
+
+
 def main(args=None):
     rclpy.init(args=args)
 
     action_client = MinimalActionClient()
 
     action_client.send_goal()
-
-    action_client
 
     rclpy.spin(action_client)
 

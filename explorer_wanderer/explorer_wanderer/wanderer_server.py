@@ -9,8 +9,10 @@ from rclpy.action import ActionServer, CancelResponse
 
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Float32
 
 from random import random
+
 
 # ros2 action send_goal wander explorer_interfaces/action/Wander "{strategy: 1, map_completed_thres: 0.6}"
 
@@ -150,8 +152,16 @@ class WandererServer(Node):
     def __init__(self):
         super().__init__('wanderer_server')
         self._action_server = ActionServer(self,Wander,'wander',self.execute_callback)
+        self.watchtower_subscription = self.create_subscription(Float32,'map_progress',self.watchtower_callback,10)
+        self.watchtower_subscription  # prevent unused variable warning
         self.stop_wandering=False
         self.get_logger().info("Wanderer Server is ready")
+
+    def watchtower_callback(self, msg):
+        #If map_progress is higher than the threshold send stop wandering signal
+        if msg.data>0.6:
+            self.stop_wandering=True
+            
 
     def execute_callback(self, goal_handle):
         self.get_logger().info("Wanderer Server received a goal")
@@ -163,6 +173,7 @@ class WandererServer(Node):
             go_forward_until_obstacle(subscriber, publisher, command)
             rotate_until_clear(subscriber, publisher, command)
 
+        self.get_logger().info('Wandering Finished')
         goal_handle.succeed()
         return Wander.Result()
 
