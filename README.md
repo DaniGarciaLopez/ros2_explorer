@@ -18,6 +18,11 @@ Install packages:
 sudo apt install ros-foxy-gazebo-ros-pkgs ros-foxy-cartographer ros-foxy-cartographer-ros ros-foxy-navigation2 ros-foxy-nav2-bringup
 sudo apt install ros-foxy-turtlebot3-msgs ros-foxy-dynamixel-sdk ros-foxy-hls-lfcd-lds-driver
 ```
+Install Python libraries:
+```
+sudo apt install python3-pip
+pip3 install pandas
+```
 Create a ROS2 workspace:
 ```
 mkdir -p ~/turtlebot3_ws/src
