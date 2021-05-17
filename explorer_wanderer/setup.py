@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'wanderer = explorer_wanderer.wanderer:main'
+            'wanderer = explorer_wanderer.wanderer:main',
+            'wanderer_server = explorer_wanderer.wanderer_server:main'
         ],
     },
 )

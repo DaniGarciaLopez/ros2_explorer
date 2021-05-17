@@ -24,12 +24,14 @@ from launch.actions import ExecuteProcess
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
 
 TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
 
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='True')
+    map_name = LaunchConfiguration('map_name', default='map2')
     world_file_name = 'map.world.xml'
     world = os.path.join(get_package_share_directory('explorer_gazebo'),
                          'worlds', world_file_name)
@@ -58,4 +60,20 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([launch_file_dir, '/robot_state_publisher.launch.py']),
             launch_arguments={'use_sim_time': use_sim_time}.items(),
         ),
+
+        Node(
+            package='explorer_wanderer',
+            executable='wanderer_server',
+            name='wanderer_server',
+            output='screen',
+        ),
+        Node(
+            package='explorer_map_utils',
+            executable='watchtower',
+            name='watchtower',
+            output='screen',
+            parameters=[{'map_name': map_name}],
+        ),
+        
+        
     ])

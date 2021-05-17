@@ -29,7 +29,7 @@ class Subscriber(Node):
         # Declare map_name parameter
         self.declare_parameter('map_name')
         map_param = self.get_parameter('map_name') 
-        self.get_logger().info('Map chosen = %s' % (str(map_param.value),))
+        self.get_logger().info('Map selected = %s' % (str(map_param.value),))
         # Read map file
         package_share_directory = get_package_share_directory('explorer_gazebo')
         map_folder_directory = os.path.join(package_share_directory, 'maps')
