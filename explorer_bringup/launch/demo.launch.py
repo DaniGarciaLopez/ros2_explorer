@@ -31,11 +31,13 @@ TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='True')
-    map_name = LaunchConfiguration('map_name', default='map2')
+    map_name = LaunchConfiguration('map_name', default='map7')
     world_file_name = 'map.world.xml'
     world = os.path.join(get_package_share_directory('explorer_gazebo'),
                          'worlds', world_file_name)
-    launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_gazebo'), 'launch')
+    gazebo_launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_gazebo'), 'launch')
+    cartographer_launch_file_dir = os.path.join(get_package_share_directory('explorer_cartographer'), 'launch')
+    nav2_launch_file_dir = os.path.join(get_package_share_directory('explorer_navigation2'), 'launch')
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
 
     return LaunchDescription([
@@ -57,7 +59,12 @@ def generate_launch_description():
             output='screen'),
 
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([launch_file_dir, '/robot_state_publisher.launch.py']),
+            PythonLaunchDescriptionSource([gazebo_launch_file_dir, '/robot_state_publisher.launch.py']),
+            launch_arguments={'use_sim_time': use_sim_time}.items(),
+        ),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([cartographer_launch_file_dir, '/cartographer.launch.py']),
             launch_arguments={'use_sim_time': use_sim_time}.items(),
         ),
 

@@ -37,7 +37,7 @@ class Subscriber(Node):
         df=pd.read_csv(map_file, sep=',',header=None)
         sim_map_array = df.values
         print(sim_map_array)
-        self.free_space = numpy.count_nonzero(sim_map_array == 0)        
+        self.free_space = numpy.count_nonzero(sim_map_array == 0)  
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):

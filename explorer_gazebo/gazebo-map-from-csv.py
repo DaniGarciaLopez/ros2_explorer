@@ -26,7 +26,7 @@ for filename in filenames: #Iterate through all csv filenames
     boxHeight = 1.0
     inFileStr = 'maps/'+filename+'.csv'
 
-    resolution = 1.0  # Just to make similar to MATLAB [pixel/meter]
+    resolution = 2  # Just to make similar to MATLAB [pixel/meter]
     meterPerPixel = 1 / resolution  # [meter/pixel]
 
     #-- Program

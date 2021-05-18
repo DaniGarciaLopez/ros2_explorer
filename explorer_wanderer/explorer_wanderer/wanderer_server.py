@@ -107,8 +107,8 @@ def go_forward_until_obstacle(subscriber, publisher, command):
     while check_ranges(subscriber)[0]:  # while obstacles are not present or robot is aiming away from wall, go forward
         rclpy.spin_once(subscriber)
         speed = check_ranges(subscriber)[1] / 2.5  # robot speed depends on distance to closest obstacle
-        if speed > 2.2:  # max speed
-            speed = 2.2
+        if speed > 0.9:  # max speed
+            speed = 0.9
         command.linear.x = speed
         publisher.get_logger().info('Going forward at %s m/s.' % round(speed, 2))
         publisher.publisher_.publish(command)
@@ -156,6 +156,9 @@ class WandererServer(Node):
         self.watchtower_subscription  # prevent unused variable warning
         self.stop_wandering=False
         self.get_logger().info("Wanderer Server is ready")
+        self.subscriber = Subscriber()
+        self.publisher = Publisher()
+        self.command = Twist()
 
     def watchtower_callback(self, msg):
         #If map_progress is higher than the threshold send stop wandering signal
@@ -165,13 +168,11 @@ class WandererServer(Node):
 
     def execute_callback(self, goal_handle):
         self.get_logger().info("Wanderer Server received a goal")
-        subscriber = Subscriber()
-        publisher = Publisher()
-        command = Twist()
+        
 
         while not self.stop_wandering:  # main loop. The robot goes forward until obstacle, and then turns until its free to advance, repeatedly.
-            go_forward_until_obstacle(subscriber, publisher, command)
-            rotate_until_clear(subscriber, publisher, command)
+            go_forward_until_obstacle(self.subscriber, self.publisher, self.command)
+            rotate_until_clear(self.subscriber, self.publisher, self.command)
 
         self.get_logger().info('Wandering Finished')
         goal_handle.succeed()
