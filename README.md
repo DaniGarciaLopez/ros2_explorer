@@ -101,7 +101,7 @@ ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{pose: 
 ```
 Publish waypoints:
 ```
-ros2 action send_goal /follow_waypoints nav2_msgs/action/FollowWaypoints "{poses: [{pose: {header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}}, {pose: {header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x: 2.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}}, {pose: {header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x: 2.0, y: 5.0, z: 0.0}, orientation: {w: 1.0}}}}]}"
+ros2 action send_goal /follow_waypoints nav2_msgs/action/FollowWaypoints "{poses: [{header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}},{header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x: 4.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}},{header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x: 40.0, y: 4.0, z: 0.0}, orientation: {w: 1.0}}}]}"
 ```
 ## Package structure
 ![image](https://github.com/DaniGarciaLopez/ros2_explorer/blob/main/explorer_bringup/data/explorer_graph.png)
