@@ -1,5 +1,7 @@
 from action_msgs.msg import GoalStatus
+from geometry_msgs.msg import PoseStamped
 from explorer_interfaces.action import Wander
+from nav2_msgs.action import NavigateToPose
 
 import rclpy
 from rclpy.action import ActionClient
@@ -11,16 +13,17 @@ from rclpy.node import Node
 class WandererClient(Node):
 
     def __init__(self):
-        super().__init__('manager')
+        super().__init__('wanderer_client')
         self._action_client = ActionClient(self, Wander, 'wander')
+        self.navigation_client = NavigationClient()
 
     def goal_response_callback(self, future):
         goal_handle = future.result()
         if not goal_handle.accepted:
-            self.get_logger().info('Goal rejected :(')
+            self.get_logger().info('Exploration goal rejected')
             return
 
-        self.get_logger().info('Goal accepted :)')
+        self.get_logger().info('Exploration goal accepted')
 
         self._get_result_future = goal_handle.get_result_async()
         self._get_result_future.add_done_callback(self.get_result_callback)
@@ -32,7 +35,9 @@ class WandererClient(Node):
         result = future.result().result
         status = future.result().status
         if status == GoalStatus.STATUS_SUCCEEDED:
-            self.get_logger().info('Goal succeeded!')
+            self.get_logger().info('Map succesfully explored')
+            #Return to home
+            self.navigation_client.send_goal()
         else:
             self.get_logger().info('Goal failed with status: {0}'.format(status))
             
@@ -43,9 +48,9 @@ class WandererClient(Node):
 
         goal_msg = Wander.Goal()
         goal_msg.strategy= 1
-        goal_msg.map_completed_thres = 0.95
+        goal_msg.map_completed_thres = 0.1
 
-        self.get_logger().info('Sending goal request...')
+        self.get_logger().info('Sending exploration goal request...')
 
         self._send_goal_future = self._action_client.send_goal_async(
             goal_msg,
@@ -56,16 +61,16 @@ class WandererClient(Node):
 class NavigationClient(Node):
 
     def __init__(self):
-        super().__init__('manager')
-        self._action_client = ActionClient(self, Wander, 'wander')
+        super().__init__('navigation_client')
+        self._action_client = ActionClient(self, NavigateToPose, 'navigate_to_pose')
 
     def goal_response_callback(self, future):
         goal_handle = future.result()
         if not goal_handle.accepted:
-            self.get_logger().info('Goal rejected :(')
+            self.get_logger().info('Exploration goal rejected')
             return
 
-        self.get_logger().info('Goal accepted :)')
+        self.get_logger().info('Navigation goal accepted')
 
         self._get_result_future = goal_handle.get_result_async()
         self._get_result_future.add_done_callback(self.get_result_callback)
@@ -74,7 +79,7 @@ class NavigationClient(Node):
         result = future.result().result
         status = future.result().status
         if status == GoalStatus.STATUS_SUCCEEDED:
-            self.get_logger().info('Goal succeeded!')
+            self.get_logger().info('Arrived to home position')
         else:
             self.get_logger().info('Goal failed with status: {0}'.format(status))
             
@@ -82,11 +87,10 @@ class NavigationClient(Node):
         self.get_logger().info('Waiting for action server...')
         self._action_client.wait_for_server()
 
-        goal_msg = Wander.Goal()
-        goal_msg.strategy= 1
-        goal_msg.map_completed_thres = 0.6
+        goal_msg = NavigateToPose.Goal()
+        goal_msg.pose.pose.orientation.w=1.0 #Home position
 
-        self.get_logger().info('Sending goal request...')
+        self.get_logger().info('Sending navigation goal request...')
 
         self._send_goal_future = self._action_client.send_goal_async(goal_msg)
 

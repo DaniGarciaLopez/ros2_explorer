@@ -162,7 +162,7 @@ class WandererServer(Node):
 
     def watchtower_callback(self, msg):
         #If map_progress is higher than the threshold send stop wandering signal
-        if msg.data>0.6:
+        if msg.data>0.15:
             self.stop_wandering=True
             
 

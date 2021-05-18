@@ -31,7 +31,7 @@ TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='True')
-    map_name = LaunchConfiguration('map_name', default='map7')
+    map_name = LaunchConfiguration('map_name', default='map10')
     world_file_name = 'map.world.xml'
     world = os.path.join(get_package_share_directory('explorer_gazebo'),
                          'worlds', world_file_name)
