@@ -25,7 +25,7 @@ from nav2_common.launch import RewrittenYaml
 
 def generate_launch_description():
     # Get the launch directory
-    bringup_dir = get_package_share_directory('nav2_bringup')
+    nav_dir = get_package_share_directory('explorer_navigation2')
 
     namespace = LaunchConfiguration('namespace')
     use_sim_time = LaunchConfiguration('use_sim_time')
@@ -80,7 +80,7 @@ def generate_launch_description():
 
         DeclareLaunchArgument(
             'params_file',
-            default_value=os.path.join(bringup_dir, 'params', 'nav2_params.yaml'),
+            default_value=os.path.join(nav_dir, 'param', 'burger.yaml'),
             description='Full path to the ROS2 parameters file to use'),
 
         DeclareLaunchArgument(
