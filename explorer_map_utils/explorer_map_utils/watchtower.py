@@ -27,17 +27,28 @@ class Subscriber(Node):
         self.publisher_ = self.create_publisher(Float32, 'map_progress', 10)
         self.free_thresh = 0.65
         # Declare map_name parameter
-        self.declare_parameter('map_name')
-        map_param = self.get_parameter('map_name') 
-        self.get_logger().info('Map selected = %s' % (str(map_param.value),))
+        self.declare_parameter('map_name', 'map1')
+        map_name_param = self.get_parameter('map_name') 
+        self.get_logger().info('Map selected = %s' % (str(map_name_param.value),))
+        # Declare map_size parameter
+        self.declare_parameter('map_size')
+        map_size_param = self.get_parameter('map_size') 
         # Read map file
         package_share_directory = get_package_share_directory('explorer_gazebo')
         map_folder_directory = os.path.join(package_share_directory, 'maps')
-        map_file = os.path.join(map_folder_directory, map_param.value + '.csv')
-        df=pd.read_csv(map_file, sep=',',header=None)
+        map_file = os.path.join(map_folder_directory, map_name_param.value + '.csv')
+        try:
+            df=pd.read_csv(map_file, sep=',',header=None)
+        except:
+            self.get_logger().error('Could not find map file')
+            raise FileNotFoundError
         sim_map_array = df.values
         print(sim_map_array)
-        self.free_space = numpy.count_nonzero(sim_map_array == 0)  
+        sim_map_resolution = 0.5**2
+        if not map_size_param.value:
+            self.free_space = numpy.count_nonzero(sim_map_array == 0) * sim_map_resolution
+        else:
+            self.free_space = map_size_param.value
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
