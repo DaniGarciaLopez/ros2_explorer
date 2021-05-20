@@ -155,6 +155,7 @@ class WandererServer(Node):
         self.watchtower_subscription = self.create_subscription(Float32,'map_progress',self.watchtower_callback,10)
         self.watchtower_subscription  # prevent unused variable warning
         self.stop_wandering=False
+        self.map_completed_thres=1.0 #Initialize threshold to max (100%)
         self.get_logger().info("Wanderer Server is ready")
         self.subscriber = Subscriber()
         self.publisher = Publisher()
@@ -162,14 +163,14 @@ class WandererServer(Node):
 
     def watchtower_callback(self, msg):
         #If map_progress is higher than the threshold send stop wandering signal
-        if msg.data>0.15:
+        if msg.data>self.map_completed_thres:
             self.stop_wandering=True
             
 
     def execute_callback(self, goal_handle):
         self.get_logger().info("Wanderer Server received a goal")
-        
-
+        self.map_completed_thres=goal_handle.request.map_completed_thres
+        self.get_logger().info("Map completed threshold set to: %s" %self.map_completed_thres)
         while not self.stop_wandering:  # main loop. The robot goes forward until obstacle, and then turns until its free to advance, repeatedly.
             go_forward_until_obstacle(self.subscriber, self.publisher, self.command)
             rotate_until_clear(self.subscriber, self.publisher, self.command)

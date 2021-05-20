@@ -48,7 +48,7 @@ class WandererClient(Node):
 
         goal_msg = Wander.Goal()
         goal_msg.strategy= 1
-        goal_msg.map_completed_thres = 0.1
+        goal_msg.map_completed_thres = 0.2
 
         self.get_logger().info('Sending exploration goal request...')
 
