@@ -6,7 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /TF1/Frames1
-        - /Cartographer1
+        - /Cartographer1/Trajectories1
       Splitter Ratio: 0.5794117450714111
     Tree Height: 787
   - Class: rviz_common/Selection
@@ -238,13 +238,13 @@ Visualization Manager:
     - Alpha: 1
       Buffer Length: 1
       Class: rviz_default_plugins/Path
-      Color: 25; 255; 0
+      Color: 245; 121; 0
       Enabled: true
       Head Diameter: 0.30000001192092896
       Head Length: 0.20000000298023224
       Length: 0.30000001192092896
-      Line Style: Lines
-      Line Width: 0.029999999329447746
+      Line Style: Billboards
+      Line Width: 0.07000000029802322
       Name: Navigation Path
       Offset:
         X: 0
@@ -503,11 +503,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 46.48588180541992
+      Scale: 113.63668060302734
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz_default_plugins)
-      X: 5.555726528167725
-      Y: 2.9192986488342285
+      X: 2.9148824214935303
+      Y: 4.763229846954346
     Saved: ~
 Window Geometry:
   Displays:

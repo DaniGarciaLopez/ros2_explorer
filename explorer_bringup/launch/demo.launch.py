@@ -85,13 +85,13 @@ def generate_launch_description():
             name='discoverer_server',
             output='screen',
         ),
-        Node(
-            package='explorer_map_utils',
-            executable='watchtower',
-            name='watchtower',
-            output='screen',
-            parameters=[{'map_name': map_name}],
-        ),
+        # Node(
+        #     package='explorer_map_utils',
+        #     executable='watchtower',
+        #     name='watchtower',
+        #     output='screen',
+        #     parameters=[{'map_name': map_name}],
+        # ),
 
 
     ])
