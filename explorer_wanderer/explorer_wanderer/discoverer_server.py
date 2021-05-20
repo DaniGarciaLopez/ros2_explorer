@@ -35,16 +35,18 @@ class DiscovererServer(Node):
         self.watchtower_subscription  # prevent unused variable warning
         self.navigation_client = NavigationClient()
         self.stop_discovering = False
+        self.map_completed_thres=1.0 #Initialize threshold to max (100%)
         self.get_logger().info("Discoverer Server is ready")
 
     def watchtower_callback(self, msg):
         # If map_progress is higher than the threshold send stop wandering signal
-        if msg.data > 0.15:
+        if msg.data > self.map_completed_thres:
             self.stop_discovering = True
 
     def execute_callback(self, goal_handle):
         self.get_logger().info("Discoverer Server received a goal")
-
+        self.map_completed_thres=goal_handle.request.map_completed_thres
+        self.get_logger().info("Map completed threshold set to: %s" %self.map_completed_thres)
         while not self.stop_discovering:
             self.navigation_client.send_goal()
 

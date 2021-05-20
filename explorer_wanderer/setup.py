@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'wanderer = explorer_wanderer.wanderer:main',
-            'wanderer_server = explorer_wanderer.wanderer_server:main'
+            'wanderer_server = explorer_wanderer.wanderer_server:main',
             'discoverer_server = explorer_wanderer.discoverer_server:main'
         ],
     },

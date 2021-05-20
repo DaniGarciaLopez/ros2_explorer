@@ -25,6 +25,8 @@ setup(
     entry_points={
         'console_scripts': [
             'manager= '+package_name+'.manager:main',
+            'manager_discoverer= '+package_name+'.manager_discoverer:main',
+            'manager_copy= '+package_name+'.manager_copy:main',
         ],
     },
 )
