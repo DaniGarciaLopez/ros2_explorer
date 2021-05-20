@@ -43,7 +43,6 @@ class Subscriber(Node):
             self.get_logger().error('Could not find map file')
             raise FileNotFoundError
         sim_map_array = df.values
-        print(sim_map_array)
         sim_map_resolution = 0.5**2
         if not map_size_param.value:
             self.free_space = numpy.count_nonzero(sim_map_array == 0) * sim_map_resolution
