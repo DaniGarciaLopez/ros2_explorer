@@ -64,7 +64,7 @@ class DiscovererClient(Node):
 
     def __init__(self):
         super().__init__('discoverer_client')
-        self._action_client = ActionClient(self, Wander, 'wander')
+        self._action_client = ActionClient(self, Discover, 'discover')
         self.navigation_client = NavigationClient()
 
     def goal_response_callback(self, future):

@@ -68,15 +68,21 @@ def generate_launch_description():
             launch_arguments={'use_sim_time': use_sim_time}.items(),
         ),
 
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([nav2_launch_file_dir, '/nav.launch.py']),
-            launch_arguments={'use_sim_time': use_sim_time}.items(),
-        ),
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource([nav2_launch_file_dir, '/nav.launch.py']),
+        #     launch_arguments={'use_sim_time': use_sim_time}.items(),
+        # ),
 
+        # Node(
+        #     package='explorer_wanderer',
+        #     executable='wanderer_server',
+        #     name='wanderer_server',
+        #     output='screen',
+        # ),
         Node(
             package='explorer_wanderer',
-            executable='wanderer_server',
-            name='wanderer_server',
+            executable='discoverer_server',
+            name='discoverer_server',
             output='screen',
         ),
         Node(

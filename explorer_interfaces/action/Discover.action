@@ -1,0 +1,14 @@
+
+#Strategy to use to explore the map:
+#   0=Random control
+#   1=Wall hugging
+#   ...
+uint8 strategy
+
+#Threshold to consider the map completed
+float32 map_completed_thres
+---
+bool result
+---
+#Percentage of the map explored
+float32 progress

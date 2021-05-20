@@ -21,7 +21,7 @@ from std_msgs.msg import Float32
 from nav_msgs.msg import OccupancyGrid
 from nav_msgs.msg import MapMetaData
 from nav2_msgs.action import NavigateToPose
-from explorer_interfaces.action import Wander
+from explorer_interfaces.action import Discover
 
 
 # ros2 action send_goal wander explorer_interfaces/action/Wander "{strategy: 1, map_completed_thres: 0.6}"
@@ -30,7 +30,7 @@ from explorer_interfaces.action import Wander
 class DiscovererServer(Node):
     def __init__(self):
         super().__init__('discoverer_server')
-        self._action_server = ActionServer(self, Wander, 'wander', self.execute_callback)
+        self._action_server = ActionServer(self, Discover, 'discover', self.execute_callback)
         self.watchtower_subscription = self.create_subscription(Float32, 'map_progress', self.watchtower_callback, 10)
         self.watchtower_subscription  # prevent unused variable warning
         self.navigation_client = NavigationClient()
@@ -50,7 +50,7 @@ class DiscovererServer(Node):
 
         self.get_logger().info('Discovering Finished')
         goal_handle.succeed()
-        return Wander.Result()
+        return Discover.Result()
 
 
 class NavigationClient(Node):
