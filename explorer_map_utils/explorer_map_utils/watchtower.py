@@ -27,7 +27,7 @@ class Subscriber(Node):
         self.publisher_ = self.create_publisher(Float32, 'map_progress', 10)
         self.free_thresh = 0.65
         # Declare map_name parameter
-        self.declare_parameter('map_name', 'map1')
+        self.declare_parameter('map_name', 'map10')
         map_name_param = self.get_parameter('map_name') 
         self.get_logger().info('Map selected = %s' % (str(map_name_param.value),))
         # Declare map_size parameter
@@ -54,12 +54,11 @@ class Subscriber(Node):
     def listener_callback(self, msg):
         map_array = numpy.asarray(msg.data)
         resolution = msg.info.resolution
-        map_explored = numpy.count_nonzero(map_array <= self.free_thresh) * resolution**2
+        map_explored = numpy.count_nonzero((map_array <= self.free_thresh) & (map_array > -1)) * resolution**2
         percentage_explored = map_explored/self.free_space
         map_explored_msg = Float32()
         map_explored_msg.data = percentage_explored
         self.publisher_.publish(map_explored_msg)
-        self.get_logger().info('Percentage explored = %s' % map_explored_msg.data)
 
 def main(args=None):
     rclpy.init(args=args)
