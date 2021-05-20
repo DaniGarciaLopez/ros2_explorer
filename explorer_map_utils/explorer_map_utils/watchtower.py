@@ -56,6 +56,8 @@ class Subscriber(Node):
         map_explored = numpy.count_nonzero((map_array <= self.free_thresh) & (map_array > -1)) * resolution**2
         percentage_explored = map_explored/self.free_space
         map_explored_msg = Float32()
+        if percentage_explored > 1.0:
+            percentage_explored = 1.0
         map_explored_msg.data = percentage_explored
         self.publisher_.publish(map_explored_msg)
 
