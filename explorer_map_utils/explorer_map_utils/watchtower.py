@@ -25,7 +25,7 @@ class Subscriber(Node):
             10)
         # Define publisher
         self.publisher_ = self.create_publisher(Float32, 'map_progress', 10)
-        self.free_thresh = 0.65
+        self.free_thresh = 0.25
         # Declare map_name parameter
         self.declare_parameter('map_name', 'map10')
         map_name_param = self.get_parameter('map_name') 
