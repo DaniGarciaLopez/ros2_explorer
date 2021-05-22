@@ -1362,6 +1362,22 @@
           </box>
         </geometry>
       </visual>
+      <collision name="box_12_16">
+        <pose>6.25 8.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="box_12_16">
+        <pose>6.25 8.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </visual>
       <collision name="box_12_17">
         <pose>6.25 8.75 0.5 0 0 0</pose>
         <geometry>
@@ -1570,6 +1586,22 @@
           </box>
         </geometry>
       </visual>
+      <collision name="box_13_16">
+        <pose>6.75 8.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="box_13_16">
+        <pose>6.75 8.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </visual>
       <collision name="box_13_17">
         <pose>6.75 8.75 0.5 0 0 0</pose>
         <geometry>
@@ -1692,6 +1724,86 @@
       </collision>
       <visual name="box_14_9">
         <pose>7.25 4.75 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="box_14_12">
+        <pose>7.25 6.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="box_14_12">
+        <pose>7.25 6.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="box_14_13">
+        <pose>7.25 6.75 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="box_14_13">
+        <pose>7.25 6.75 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="box_14_14">
+        <pose>7.25 7.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="box_14_14">
+        <pose>7.25 7.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="box_14_15">
+        <pose>7.25 7.75 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="box_14_15">
+        <pose>7.25 7.75 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="box_14_16">
+        <pose>7.25 8.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="box_14_16">
+        <pose>7.25 8.25 0.5 0 0 0</pose>
         <geometry>
           <box>
             <size>0.5 0.5 1.0</size>

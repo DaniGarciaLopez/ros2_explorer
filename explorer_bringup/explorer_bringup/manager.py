@@ -15,10 +15,10 @@ from rclpy.node import Node
 #ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{pose: {header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}}"
 
 
-class ExplorerClient(Node):
+class Manager(Node):
 
     def __init__(self):
-        super().__init__('explorer_client')
+        super().__init__('manager')
         self._action_client_wander = ActionClient(self, Wander, 'wander')
         self._action_client_discover = ActionClient(self, Discover, 'discover')
         self.navigation_client = NavigationClient()
@@ -33,12 +33,15 @@ class ExplorerClient(Node):
         self.start_time=self.get_clock().now()
 
     def print_feedback(self):
-        self.map_explored="{:.2f}".format(self.map_explored) #Crop to 2 decimals
-        self.trajectory_distance=self.compute_distance_from_markers(self.trajectory_markers)
-        self.trajectory_distance="{:.2f}".format(self.trajectory_distance) #Crop to 2 decimals
-        time_now=self.get_clock().now()
-        duration=str(int((time_now.nanoseconds-self.start_time.nanoseconds)/(10**9)))
-        self.get_logger().info("Duration: %s s - Map: %s - Distance: %s m " %(duration, self.map_explored, self.trajectory_distance))
+        try:
+            self.map_explored="{:.2f}".format(self.map_explored) #Crop to 2 decimals
+            self.trajectory_distance=self.compute_distance_from_markers(self.trajectory_markers)
+            self.trajectory_distance="{:.2f}".format(self.trajectory_distance) #Crop to 2 decimals
+            time_now=self.get_clock().now()
+            duration=str(int((time_now.nanoseconds-self.start_time.nanoseconds)/(10**9)))
+            self.get_logger().info("Duration: %s s - Map: %s - Distance: %s m " %(duration, self.map_explored, self.trajectory_distance))
+        except:
+            pass
 
     def timer_callback(self):
         #Print feedback in terminal acording to timer_period
@@ -83,23 +86,10 @@ class ExplorerClient(Node):
     def get_result_callback_wanderer(self, future):
         result = future.result().result
         status = future.result().status
-        if status == GoalStatus.STATUS_SUCCEEDED:
-            self.map_finished=True
-            self.get_logger().info('MAP SUCCESSFULLY EXPLORED')
-            self.print_feedback()
-            #Return to home
-            self.navigation_client.send_goal()
-        else:
-            self.get_logger().info('Goal failed with status: {0}'.format(status))
-            
-
-    def send_goal_wanderer(self):
-        self.get_logger().info('Waiting for action server...')
-        self._action_client_wander.wait_for_server()
-
+        ifxplorer_client
         goal_msg = Wander.Goal()
         goal_msg.strategy= 1
-        goal_msg.map_completed_thres = 0.5
+        goal_msg.map_completed_thres = 0.97
 
         self.get_logger().info('Sending exploration goal request...')
 
@@ -142,7 +132,7 @@ class ExplorerClient(Node):
 
         goal_msg = Discover.Goal()
         goal_msg.strategy= 1
-        goal_msg.map_completed_thres = 0.5
+        goal_msg.map_completed_thres = 0.97
 
         self.get_logger().info('Sending exploration goal request...')
 
@@ -184,7 +174,7 @@ class NavigationClient(Node):
         goal_msg = NavigateToPose.Goal()
         goal_msg.pose.pose.orientation.w=1.0 #Home position
 
-        self.get_logger().info('Sending navigation goal request...')
+        self.get_logger().info('Moving to base...')
 
         self._send_goal_future = self._action_client.send_goal_async(goal_msg)
 
@@ -194,11 +184,11 @@ class NavigationClient(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    explorer_client = ExplorerClient()
+    manager = Manager()
 
-    explorer_client.send_goal_discoverer()
+    manager.send_goal_discoverer()
 
-    rclpy.spin(explorer_client)
+    rclpy.spin(manager)
 
 
 if __name__ == '__main__':

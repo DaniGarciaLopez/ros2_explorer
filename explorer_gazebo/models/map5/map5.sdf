@@ -626,6 +626,22 @@
           </box>
         </geometry>
       </visual>
+      <collision name="box_5_12">
+        <pose>2.75 6.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="box_5_12">
+        <pose>2.75 6.25 0.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 1.0</size>
+          </box>
+        </geometry>
+      </visual>
       <collision name="box_5_24">
         <pose>2.75 12.25 0.5 0 0 0</pose>
         <geometry>

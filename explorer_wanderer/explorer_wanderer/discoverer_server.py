@@ -173,7 +173,7 @@ class CartographerSubscriber(Node):
         # At the beginning, when all values are uncertain, we add some hardcoded waypoints so it begins to navigate
         # and has time to discover accessible areas
         if np.size(self.sorted_accessible_waypoints) == 0:
-            self.sorted_accessible_waypoints = np.array([[1.0, 0.0], [0.0, 1.0], [-1.0, 0.0], [0.0, -1.0]])
+            self.sorted_accessible_waypoints = np.array([[1.5, 0.0], [0.0, 1.5], [-1.5, 0.0], [0.0, -1.5]])
 
         # Once we have the new waypoints, they are saved in self.sorted_accessible_waypoints for use by the Navigator
         # client
