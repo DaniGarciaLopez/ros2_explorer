@@ -5,6 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
+        - /Grid1
         - /TF1/Frames1
         - /Cartographer1/Trajectories1
       Splitter Ratio: 0.5794117450714111
@@ -40,7 +41,7 @@ Visualization Manager:
         Y: 0
         Z: 0
       Plane: XY
-      Plane Cell Count: 10
+      Plane Cell Count: 50
       Reference Frame: <Fixed Frame>
       Value: true
     - Class: rviz_default_plugins/TF
@@ -453,6 +454,18 @@ Visualization Manager:
           Value: false
       Enabled: true
       Name: Cartographer
+    - Alpha: 1
+      Class: rviz_default_plugins/Polygon
+      Color: 25; 255; 0
+      Enabled: true
+      Name: Footprint
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /global_costmap/published_footprint
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -493,7 +506,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -1.5700011253356934
+      Angle: -1.5700000524520874
       Class: rviz_default_plugins/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -503,11 +516,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 113.63668060302734
+      Scale: 175.59243774414062
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz_default_plugins)
-      X: 2.9148824214935303
-      Y: 4.763229846954346
+      X: 0.1653742790222168
+      Y: 0.2853081524372101
     Saved: ~
 Window Geometry:
   Displays:

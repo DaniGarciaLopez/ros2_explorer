@@ -165,7 +165,7 @@ class WandererServer(Node):
         #If map_progress is higher than the threshold send stop wandering signal
         if msg.data>self.map_completed_thres:
             self.stop_wandering=True
-            
+        
 
     def execute_callback(self, goal_handle):
         self.get_logger().info("Wanderer Server received a goal")
