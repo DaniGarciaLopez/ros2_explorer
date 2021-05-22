@@ -86,7 +86,6 @@ class Manager(Node):
     def get_result_callback_wanderer(self, future):
         result = future.result().result
         status = future.result().status
-        ifxplorer_client
         goal_msg = Wander.Goal()
         goal_msg.strategy= 1
         goal_msg.map_completed_thres = 0.97
@@ -174,7 +173,7 @@ class NavigationClient(Node):
         goal_msg = NavigateToPose.Goal()
         goal_msg.pose.pose.orientation.w=1.0 #Home position
 
-        self.get_logger().info('Moving to base...')
+        self.get_logger().info('Returning to base...')
 
         self._send_goal_future = self._action_client.send_goal_async(goal_msg)
 
