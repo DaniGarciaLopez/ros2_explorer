@@ -12,7 +12,11 @@ import math
 from rclpy.action import ActionClient
 from rclpy.node import Node
 
+from rclpy.node import Node
+from rcl_interfaces.srv import GetParameters
+
 #ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{pose: {header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}}"
+#ros2 param get /controller_server goal_checker.xy_goal_tolerance
 
 
 class Manager(Node):
@@ -31,6 +35,7 @@ class Manager(Node):
         self.trajectory_distance=0.0
         self.trajectory_markers=MarkerArray()
         self.start_time=self.get_clock().now()
+
 
     def print_feedback(self):
         try:
