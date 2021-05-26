@@ -1,6 +1,7 @@
+# written by Enrique Fernández-Laguilhoat Sánchez-Biezma
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# written by Enrique Fernández-Laguilhoat Sánchez-Biezma
+
 
 # 3rd party
 import numpy as np
