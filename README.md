@@ -64,6 +64,15 @@ source ~/turtlebot3_ws/install/setup.bash
 export TURTLEBOT3_MODEL=burger
 export GAZEBO_MODEL_PATH=~/turtlebot3_ws/src/ros2_explorer/explorer_gazebo/models
 ```
+## How to run
+Execute the launch file of the map you want to use (Opens Gazebo simulation, Rviz, Cartographer, Nav2 and exploration servers):
+```
+ros2 launch explorer_bringup demo.launch.py
+```
+Execute manager node and select exploring algorithm:
+```
+ros2 run explorer_bringup manager
+```
 ## Add your own CSV Map
 Add your own csv maps in this folder:
 ```
@@ -81,15 +90,6 @@ Maps will be converted to Gazebo format in `/explorer_gazebo/models` folder. Cre
 </include>
 ```
 Create a new launch file in `/explorer_bringup/launch` folder and modify the parameter `map_name` according to the map you just created.
-## How to run
-Execute the launch file of the map you want to use (Opens Gazebo simulation, Rviz, Cartographer, Nav2 and exploration servers):
-```
-ros2 launch explorer_bringup demo.launch.py
-```
-Execute manager node and select exploring algorithm:
-```
-ros2 run explorer_bringup manager
-```
 ## Testing commands
 Cartographer launch:
 ```
