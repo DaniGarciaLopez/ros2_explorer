@@ -8,7 +8,10 @@ The map is created using SLAM with the package [Google Cartographer](https://git
   
 >**Discoverer Exploration** prioritizes specific unknown hotspots of the map convoluting the occupancy grid. It's a better way to explore bigger maps in exchange of a higher computational cost.
 
-## Installation (tried on Ubuntu 20.04 - ROS Foxy)
+### [Youtube Video](https://youtu.be/UNiCngwE_Zo)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/UNiCngwE_Zo/maxresdefault.jpg)](https://youtu.be/UNiCngwE_Zo)
+
+## Installation (tested on Ubuntu 20.04 - ROS 2 Foxy)
 
 [Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
 
@@ -61,6 +64,15 @@ source ~/turtlebot3_ws/install/setup.bash
 export TURTLEBOT3_MODEL=burger
 export GAZEBO_MODEL_PATH=~/turtlebot3_ws/src/ros2_explorer/explorer_gazebo/models
 ```
+## How to run
+Execute the launch file of the map you want to use (Opens Gazebo simulation, Rviz, Cartographer, Nav2 and exploration servers):
+```
+ros2 launch explorer_bringup demo.launch.py
+```
+Execute manager node and select exploring algorithm:
+```
+ros2 run explorer_bringup manager
+```
 ## Add your own CSV Map
 Add your own csv maps in this folder:
 ```
@@ -71,25 +83,17 @@ Run Python script:
 cd ~/turtlebot3_ws/src/ros2_explorer/explorer_gazebo/
 python3 gazebo-map-from-csv.py
 ```
-Maps will be converted to Gazebo format in `models` folder. Modify the name of the map you want to use in `worlds/map.world.xml`:
+Maps will be converted to Gazebo format in `/explorer_gazebo/models` folder. Create a new .world.xml file in `/explorer_gazebo/worlds` and modify the name of the map you want to use:
 ```
 <include>
   <uri>model://map1</uri>
 </include>
 ```
-## How to run
-Launch basic simulation in gazebo loading map and robot in the initial position:
-```
-ros2 launch explorer_bringup demo.launch.py
-```
-
+Create a new launch file in `/explorer_bringup/launch` folder and modify the parameter `map_name` according to the map you just created.
+## Testing commands
 Cartographer launch:
 ```
 ros2 launch explorer_cartographer cartographer.launch.py use_sim_time:=True
-```
-Explore the map using wanderer:
-```
-ros2 run explorer_wanderer wanderer
 ```
 Navigation launch:
 ```
