@@ -1,4 +1,5 @@
-# written by Enrique Fernández-Laguilhoat Sánchez-Biezma
+# written by Enrique Fernández-Laguilhoat Sánchez-Biezma and Daniel García López
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
