@@ -1,5 +1,14 @@
-# ROS2 Turtlebot3 Map Explorer
-## Installation
+# ROS 2 Turtlebot 3 Map Explorer
+## Description
+In this repo we use Turtlebot 3 along with ROS 2 and Gazebo to explore an unknown csv map, navigate through it and create a map. 
+
+The map is created using SLAM with the package [Google Cartographer](https://github.com/cartographer-project/cartographer) and navigation is achieved with [Nav2](https://github.com/ros-planning/navigation2) package. We have developed two exploring algorithyms:
+
+>**Wanderer Exploration** explores the map doing random turns when it detects an obstacle. It's a convenient way to explore small maps but time consuming for bigger ones.
+  
+>**Discoverer Exploration** prioritizes specific unknown hotspots of the map convoluting the occupancy grid. It's a better way to explore bigger maps in exchange of a higher computational cost.
+
+## Installation (tried on Ubuntu 20.04 - ROS Foxy)
 
 [Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
 
@@ -73,11 +82,12 @@ Launch basic simulation in gazebo loading map and robot in the initial position:
 ```
 ros2 launch explorer_bringup demo.launch.py
 ```
+
 Cartographer launch:
 ```
 ros2 launch explorer_cartographer cartographer.launch.py use_sim_time:=True
 ```
-Explore the map:
+Explore the map using wanderer:
 ```
 ros2 run explorer_wanderer wanderer
 ```
