@@ -67,7 +67,7 @@ export GAZEBO_MODEL_PATH=~/turtlebot3_ws/src/ros2_explorer/explorer_gazebo/model
 ## How to run
 Execute the launch file of the map you want to use (Opens Gazebo simulation, Rviz, Cartographer, Nav2 and exploration servers):
 ```
-ros2 launch explorer_bringup demo.launch.py
+ros2 launch explorer_bringup map10.launch.py
 ```
 Execute manager node and select exploring algorithm:
 ```
