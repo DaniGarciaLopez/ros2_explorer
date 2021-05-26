@@ -8,7 +8,9 @@ The map is created using SLAM with the package [Google Cartographer](https://git
   
 >**Discoverer Exploration** prioritizes specific unknown hotspots of the map convoluting the occupancy grid. It's a better way to explore bigger maps in exchange of a higher computational cost.
 
-## Installation (tried on Ubuntu 20.04 - ROS Foxy)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/UNiCngwE_Zo/maxresdefault.jpg)](https://youtu.be/UNiCngwE_Zo)
+
+## Installation (tested on Ubuntu 20.04 - ROS 2 Foxy)
 
 [Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
 
