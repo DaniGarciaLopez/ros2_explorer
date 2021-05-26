@@ -11,8 +11,6 @@ The map is created using SLAM with the package [Google Cartographer](https://git
 ### [Youtube Video](https://youtu.be/UNiCngwE_Zo)
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/UNiCngwE_Zo/maxresdefault.jpg)](https://youtu.be/UNiCngwE_Zo)
 
-
-
 ## Installation (tested on Ubuntu 20.04 - ROS 2 Foxy)
 
 [Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
