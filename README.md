@@ -119,4 +119,5 @@ ros2 action send_goal /follow_waypoints nav2_msgs/action/FollowWaypoints "{poses
 ```
 ## Package structure
 ![image](https://github.com/DaniGarciaLopez/ros2_explorer/blob/main/explorer_bringup/data/explorer_graph.png)
+![image](https://github.com/DaniGarciaLopez/ros2_explorer/blob/main/explorer_bringup/data/rosgraph.png)
 
