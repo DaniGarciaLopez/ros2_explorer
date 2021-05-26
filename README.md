@@ -76,7 +76,7 @@ python3 gazebo-map-from-csv.py
 Maps will be converted to Gazebo format in `/explorer_gazebo/models` folder. Create a new .world.xml file in `/explorer_gazebo/worlds` and modify the name of the map you want to use:
 ```
 <include>
-  <uri>model://map...</uri>
+  <uri>model://map1</uri>
 </include>
 ```
 Create a new launch file in `/explorer_bringup/launch` folder and modify the parameter `map_name` according to the map you just created.
