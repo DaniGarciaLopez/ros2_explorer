@@ -73,25 +73,26 @@ Run Python script:
 cd ~/turtlebot3_ws/src/ros2_explorer/explorer_gazebo/
 python3 gazebo-map-from-csv.py
 ```
-Maps will be converted to Gazebo format in `models` folder. Modify the name of the map you want to use in `worlds/map.world.xml`:
+Maps will be converted to Gazebo format in `/explorer_gazebo/models` folder. Create a new .world.xml file in `/explorer_gazebo/worlds` and modify the name of the map you want to use:
 ```
 <include>
-  <uri>model://map1</uri>
+  <uri>model://map...</uri>
 </include>
 ```
+Create a new launch file in `/explorer_bringup/launch` folder and modify the parameter `map_name` according to the map you just created.
 ## How to run
-Launch basic simulation in gazebo loading map and robot in the initial position:
+Execute the launch file of the map you want to use (Opens Gazebo simulation, Rviz, Cartographer, Nav2 and exploration servers):
 ```
 ros2 launch explorer_bringup demo.launch.py
 ```
-
+Execute manager node and select exploring algorithm:
+```
+ros2 run explorer_bringup manager
+```
+## Testing commands
 Cartographer launch:
 ```
 ros2 launch explorer_cartographer cartographer.launch.py use_sim_time:=True
-```
-Explore the map using wanderer:
-```
-ros2 run explorer_wanderer wanderer
 ```
 Navigation launch:
 ```
