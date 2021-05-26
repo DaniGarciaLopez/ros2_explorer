@@ -23,14 +23,14 @@ class Manager(Node):
 
     def __init__(self):
         super().__init__('manager')
-        self._action_client_wander = ActionClient(self, Wander, 'wander')
+        self._action_client_wanderer = ActionClient(self, Wander, 'wander')
         self._action_client_discover = ActionClient(self, Discover, 'discover')
         self.navigation_client = NavigationClient()
         self.watchtower_subscription = self.create_subscription(Float32,'map_progress',self.watchtower_callback,10)
         self.trajectory_subscription = self.create_subscription(MarkerArray,'trajectory_node_list',self.trajectory_callback,10)
         timer_period = 5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
-        self.map_explored=0.0
+        self.map_explored=0.01
         self.map_finished=False
         self.trajectory_distance=0.0
         self.trajectory_markers=MarkerArray()
@@ -91,18 +91,31 @@ class Manager(Node):
     def get_result_callback_wanderer(self, future):
         result = future.result().result
         status = future.result().status
+        if status == GoalStatus.STATUS_SUCCEEDED:
+            self.map_finished=True
+            self.get_logger().info('MAP SUCCESSFULLY EXPLORED')
+            self.print_feedback()
+            #Return to home
+            self.navigation_client.send_goal()
+        else:
+            self.get_logger().info('Goal failed with status: {0}'.format(status))
+
+    def send_goal_wanderer(self):
+        self.get_logger().info('Waiting for action server...')
+        self._action_client_wanderer.wait_for_server()
+
         goal_msg = Wander.Goal()
-        goal_msg.strategy= 1
-        goal_msg.map_completed_thres = 0.97
+        goal_msg.map_completed_thres = 0.9
 
-        self.get_logger().info('Sending exploration goal request...')
+        self.get_logger().info('Sending wanderer goal request...')
+        self.get_logger().info('Wandering until 90% map completed')
 
-        self._send_goal_future = self._action_client_wander.send_goal_async(
+        self._send_goal_future = self._action_client_wanderer.send_goal_async(
             goal_msg,
             feedback_callback=self.feedback_callback_wanderer)
 
-        self._send_goal_future.add_done_callback(self.goal_response_callback_discoverer)
-
+        self._send_goal_future.add_done_callback(self.goal_response_callback_wanderer)
+    
     def goal_response_callback_discoverer(self, future):
         goal_handle = future.result()
         if not goal_handle.accepted:
@@ -138,7 +151,9 @@ class Manager(Node):
         goal_msg.strategy= 1
         goal_msg.map_completed_thres = 0.97
 
-        self.get_logger().info('Sending exploration goal request...')
+        self.get_logger().info('Sending discoverer goal request...')
+        self.get_logger().info('Discovering until 97% map completed')
+
 
         self._send_goal_future = self._action_client_discover.send_goal_async(
             goal_msg,
@@ -190,9 +205,16 @@ def main(args=None):
 
     manager = Manager()
 
-    manager.send_goal_discoverer()
-
-    rclpy.spin(manager)
+    select=0
+    select=input('Select exploring algorithm:\n    1)Wanderer\n    2)Discoverer\n')
+    if select=='1':
+        manager.send_goal_wanderer()
+        rclpy.spin(manager)
+    elif select=='2':
+        manager.send_goal_discoverer()
+        rclpy.spin(manager)
+    else:
+        raise ValueError("Exploring algorithm not selected correctly")
 
 
 if __name__ == '__main__':
