@@ -15,8 +15,6 @@ The map is created using SLAM with the package [Google Cartographer](https://git
 
 [Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
 
-[Install Turtlebot3 on ROS2 Foxy](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/)
-
 Don't forget to install colcon:
 ```
 sudo apt install python3-colcon-common-extensions
@@ -49,11 +47,6 @@ Clone turtlebot original repository to have additional utilities:
 git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3.git
 git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
 ```
-Compile packages:
-```
-cd ~/turtlebot3_ws/
-colcon build
-```
 Include following lines in ~/.bashrc:
 ```
 source /opt/ros/foxy/setup.bash
@@ -63,6 +56,11 @@ source ~/turtlebot3_ws/install/setup.bash
 
 export TURTLEBOT3_MODEL=burger
 export GAZEBO_MODEL_PATH=~/turtlebot3_ws/src/ros2_explorer/explorer_gazebo/models
+```
+Compile packages:
+```
+cd ~/turtlebot3_ws/
+colcon build
 ```
 ## How to run
 Execute the launch file of the map you want to use (Opens Gazebo simulation, Rviz, Cartographer, Nav2 and exploration servers):
