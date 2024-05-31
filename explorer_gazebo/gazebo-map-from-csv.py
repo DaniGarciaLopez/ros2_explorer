@@ -122,7 +122,7 @@ for filename in filenames: #Iterate through all csv filenames
 
     #Create model.config file
     model = etree.Element("model")
-    name = etree.SubElement(model, "name").text='CSV Map'
+    name = etree.SubElement(model, "name").text=filename
     version = etree.SubElement(model, "version").text='1.0'
     sdf = etree.SubElement(model, "sdf", version='1.5').text=filename+'.sdf'
     description = etree.SubElement(model, "description").text='Map generated automatically from a csv file. More info: https://github.com/DaniGarciaLopez/ros2_explorer'

@@ -13,7 +13,7 @@ The map is created using SLAM with the package [Google Cartographer](https://git
 
 ## Installation (tested on Ubuntu 20.04 - ROS 2 Foxy)
 
-[Install ROS2 Foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
+[Install ROS2 Humble](https://docs.ros.org/en/humble/Installation/Linux-Install-Debians.html)
 
 Don't forget to install colcon:
 ```
@@ -21,12 +21,7 @@ sudo apt install python3-colcon-common-extensions
 ```
 Install Gazebo:
 ```
-curl -sSL http://get.gazebosim.org | sh
-```
-Install packages:
-```
-sudo apt install ros-foxy-gazebo-ros-pkgs ros-foxy-cartographer ros-foxy-cartographer-ros ros-foxy-navigation2 ros-foxy-nav2-bringup
-sudo apt install ros-foxy-turtlebot3-msgs ros-foxy-dynamixel-sdk ros-foxy-hls-lfcd-lds-driver
+sudo apt install gazebo
 ```
 Install Python libraries:
 ```
@@ -42,30 +37,26 @@ Clone the repository:
 ```
 git clone https://github.com/DaniGarciaLopez/ros2_explorer.git
 ```
-Clone turtlebot original repository to have additional utilities:
+Compile packages and get dependencies:
 ```
-git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3.git
-git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+cd ~/turtlebot3_ws/src
+sudo apt update && rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+
+cd ~/turtlebot3_ws/
+colcon build
 ```
 Include following lines in ~/.bashrc:
 ```
-source /opt/ros/foxy/setup.bash
-source /usr/share/colcon_cd/function/colcon_cd.sh
-export _colcon_cd_root=~/turtlebot3_ws
-source ~/turtlebot3_ws/install/setup.bash
+source /opt/ros/humble/local_setup.bash
+source ~/turtlebot3_ws/install/local_setup.bash
 
 export TURTLEBOT3_MODEL=burger
 export GAZEBO_MODEL_PATH=~/turtlebot3_ws/src/ros2_explorer/explorer_gazebo/models
 ```
-Compile packages:
-```
-cd ~/turtlebot3_ws/
-colcon build
-```
 ## How to run
 Execute the launch file of the map you want to use (Opens Gazebo simulation, Rviz, Cartographer, Nav2 and exploration servers):
 ```
-ros2 launch explorer_bringup map10.launch.py
+ros2 launch explorer_bringup explorer.launch.py map_name:=map10
 ```
 Execute manager node and select exploring algorithm:
 ```

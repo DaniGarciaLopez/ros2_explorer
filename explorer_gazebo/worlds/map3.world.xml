@@ -45,11 +45,6 @@
         <uri>model://map3</uri>
       </include>
     </model>
-     
-    <include>
-      <pose>1.0 1.0 0.01 0.0 0.0 0.0</pose>
-      <uri>model://turtlebot3_burger</uri>
-    </include>
 
   </world>
 </sdf>

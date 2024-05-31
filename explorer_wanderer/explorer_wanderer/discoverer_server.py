@@ -99,6 +99,7 @@ class NavigationClient(Node):
 
         # write command
         goal_msg = NavigateToPose.Goal()
+        goal_msg.pose.header.frame_id = 'base_footprint'
         goal_msg.pose.pose.position.x = float(waypoint[0])
         goal_msg.pose.pose.position.y = float(waypoint[1])
         # goal_msg.pose.pose.orientation.w = 1.0
