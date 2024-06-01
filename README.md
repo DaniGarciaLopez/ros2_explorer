@@ -45,7 +45,7 @@ sudo apt update && rosdep install -r --from-paths . --ignore-src --rosdistro $RO
 cd ~/turtlebot3_ws/
 colcon build
 ```
-Include following lines in ~/.bashrc:
+Include the following lines in ~/.bashrc:
 ```
 source /opt/ros/humble/local_setup.bash
 source ~/turtlebot3_ws/install/local_setup.bash
@@ -54,11 +54,11 @@ export TURTLEBOT3_MODEL=burger
 export GAZEBO_MODEL_PATH=~/turtlebot3_ws/src/ros2_explorer/explorer_gazebo/models
 ```
 ## How to run
-Execute the launch file of the map you want to use (Opens Gazebo simulation, Rviz, Cartographer, Nav2 and exploration servers):
+Execute the launch file and pass the map name (Opens Gazebo simulation, Rviz, Cartographer, Nav2 and exploration servers):
 ```
 ros2 launch explorer_bringup explorer.launch.py map_name:=map10
 ```
-Execute manager node and select exploring algorithm:
+Execute manager node and select the desired exploring algorithm:
 ```
 ros2 run explorer_bringup manager
 ```
@@ -77,30 +77,6 @@ Maps will be converted to Gazebo format in `/explorer_gazebo/models` folder. Cre
 <include>
   <uri>model://map1</uri>
 </include>
-```
-Create a new launch file in `/explorer_bringup/launch` folder and modify the parameter `map_name` according to the map you just created.
-## Testing commands
-Cartographer launch:
-```
-ros2 launch explorer_cartographer cartographer.launch.py use_sim_time:=True
-```
-Navigation launch:
-```
-ros2 launch explorer_navigation2 nav.launch.py use_sim_time:=True
-
-```
-Move the robot manually:
-```
-ros2 run turtlebot3_teleop teleop_keyboard
-```
-
-Save a map:
-```
-ros2 run nav2_map_server map_saver_cli
-```
-Publish a goal:
-```
-ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{pose: {header: {stamp: {sec: 0}, frame_id: 'map'}, pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}}"
 ```
 ## Package structure
 ![image](https://github.com/DaniGarciaLopez/ros2_explorer/blob/main/explorer_bringup/data/explorer_graph.png)
